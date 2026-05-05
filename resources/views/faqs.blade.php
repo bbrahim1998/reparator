@@ -82,12 +82,5 @@
 @endsection
 
 @section('scripts')
-<script>
-document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-        const faqItem = question.parentElement;
-        faqItem.classList.toggle('active');
-    });
-});
-</script>
+<script src="{{ asset('js/faqs.js') }}" defer></script>
 @endsection

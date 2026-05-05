@@ -3,27 +3,7 @@
 @section('title', 'Nuestros Servicios')
 
 @section('styles')
-<style>
-.carousel-track {
-    transition: transform 0.5s ease-in-out;
-}
-.carousel-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.carousel-dot.active {
-    background: var(--color-acento);
-    transform: scale(1.2);
-}
-.carousel-dot:hover {
-    background: var(--color-acento);
-}
-</style>
+<link rel="stylesheet" href="{{ asset('css/servicios.css') }}">
 @endsection
 
 @section('content')
@@ -43,8 +23,13 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
                     </div>
                 </div>
-                <div class="flex justify-end border-t border-white/20 px-5 pb-5 pt-2.5">
-                    <button class="add-button flex size-[50px] items-center justify-center rounded-full bg-[var(--color-acento)] text-[30px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">+</button>
+                <div class="service-footer flex items-center justify-between border-t border-white/20 px-5 pb-5 pt-2.5">
+                    <div class="quantity-selector flex items-center gap-2 rounded-full bg-white/10 px-2.5 py-1">
+                        <button class="qty-btn qty-minus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100 disabled:hover:bg-[var(--color-acento)]/20" disabled>-</button>
+                        <span class="qty-value min-w-[24px] text-center font-titulos text-[16px] font-bold text-[var(--color-texto)]">1</span>
+                        <button class="qty-btn qty-plus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40">+</button>
+                    </div>
+                    <button class="add-to-cart-btn h-[40px] rounded-[20px] bg-[var(--color-acento)] px-5 font-titulos text-[14px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-105 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">Añadir al carrito</button>
                 </div>
             </div>
         </div>
@@ -59,8 +44,13 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
                     </div>
                 </div>
-                <div class="flex justify-end border-t border-white/20 px-5 pb-5 pt-2.5">
-                    <button class="add-button flex size-[50px] items-center justify-center rounded-full bg-[var(--color-acento)] text-[30px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">+</button>
+                <div class="service-footer flex items-center justify-between border-t border-white/20 px-5 pb-5 pt-2.5">
+                    <div class="quantity-selector flex items-center gap-2 rounded-full bg-white/10 px-2.5 py-1">
+                        <button class="qty-btn qty-minus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100 disabled:hover:bg-[var(--color-acento)]/20" disabled>-</button>
+                        <span class="qty-value min-w-[24px] text-center font-titulos text-[16px] font-bold text-[var(--color-texto)]">1</span>
+                        <button class="qty-btn qty-plus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40">+</button>
+                    </div>
+                    <button class="add-to-cart-btn h-[40px] rounded-[20px] bg-[var(--color-acento)] px-5 font-titulos text-[14px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-105 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">Añadir al carrito</button>
                 </div>
             </div>
         </div>
@@ -75,8 +65,13 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
                     </div>
                 </div>
-                <div class="flex justify-end border-t border-white/20 px-5 pb-5 pt-2.5">
-                    <button class="add-button flex size-[50px] items-center justify-center rounded-full bg-[var(--color-acento)] text-[30px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">+</button>
+                <div class="service-footer flex items-center justify-between border-t border-white/20 px-5 pb-5 pt-2.5">
+                    <div class="quantity-selector flex items-center gap-2 rounded-full bg-white/10 px-2.5 py-1">
+                        <button class="qty-btn qty-minus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100 disabled:hover:bg-[var(--color-acento)]/20" disabled>-</button>
+                        <span class="qty-value min-w-[24px] text-center font-titulos text-[16px] font-bold text-[var(--color-texto)]">1</span>
+                        <button class="qty-btn qty-plus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40">+</button>
+                    </div>
+                    <button class="add-to-cart-btn h-[40px] rounded-[20px] bg-[var(--color-acento)] px-5 font-titulos text-[14px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-105 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">Añadir al carrito</button>
                 </div>
             </div>
         </div>
@@ -91,8 +86,13 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
                     </div>
                 </div>
-                <div class="flex justify-end border-t border-white/20 px-5 pb-5 pt-2.5">
-                    <button class="add-button flex size-[50px] items-center justify-center rounded-full bg-[var(--color-acento)] text-[30px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">+</button>
+                <div class="service-footer flex items-center justify-between border-t border-white/20 px-5 pb-5 pt-2.5">
+                    <div class="quantity-selector flex items-center gap-2 rounded-full bg-white/10 px-2.5 py-1">
+                        <button class="qty-btn qty-minus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100 disabled:hover:bg-[var(--color-acento)]/20" disabled>-</button>
+                        <span class="qty-value min-w-[24px] text-center font-titulos text-[16px] font-bold text-[var(--color-texto)]">1</span>
+                        <button class="qty-btn qty-plus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40">+</button>
+                    </div>
+                    <button class="add-to-cart-btn h-[40px] rounded-[20px] bg-[var(--color-acento)] px-5 font-titulos text-[14px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-105 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">Añadir al carrito</button>
                 </div>
             </div>
         </div>
@@ -107,8 +107,13 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
                     </div>
                 </div>
-                <div class="flex justify-end border-t border-white/20 px-5 pb-5 pt-2.5">
-                    <button class="add-button flex size-[50px] items-center justify-center rounded-full bg-[var(--color-acento)] text-[30px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">+</button>
+                <div class="service-footer flex items-center justify-between border-t border-white/20 px-5 pb-5 pt-2.5">
+                    <div class="quantity-selector flex items-center gap-2 rounded-full bg-white/10 px-2.5 py-1">
+                        <button class="qty-btn qty-minus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100 disabled:hover:bg-[var(--color-acento)]/20" disabled>-</button>
+                        <span class="qty-value min-w-[24px] text-center font-titulos text-[16px] font-bold text-[var(--color-texto)]">1</span>
+                        <button class="qty-btn qty-plus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40">+</button>
+                    </div>
+                    <button class="add-to-cart-btn h-[40px] rounded-[20px] bg-[var(--color-acento)] px-5 font-titulos text-[14px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-105 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">Añadir al carrito</button>
                 </div>
             </div>
         </div>
@@ -123,8 +128,13 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
                     </div>
                 </div>
-                <div class="flex justify-end border-t border-white/20 px-5 pb-5 pt-2.5">
-                    <button class="add-button flex size-[50px] items-center justify-center rounded-full bg-[var(--color-acento)] text-[30px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">+</button>
+                <div class="service-footer flex items-center justify-between border-t border-white/20 px-5 pb-5 pt-2.5">
+                    <div class="quantity-selector flex items-center gap-2 rounded-full bg-white/10 px-2.5 py-1">
+                        <button class="qty-btn qty-minus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100 disabled:hover:bg-[var(--color-acento)]/20" disabled>-</button>
+                        <span class="qty-value min-w-[24px] text-center font-titulos text-[16px] font-bold text-[var(--color-texto)]">1</span>
+                        <button class="qty-btn qty-plus flex size-[30px] items-center justify-center rounded-full bg-[var(--color-acento)]/20 text-[18px] font-bold text-[var(--color-acento)] transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/40">+</button>
+                    </div>
+                    <button class="add-to-cart-btn h-[40px] rounded-[20px] bg-[var(--color-acento)] px-5 font-titulos text-[14px] font-bold text-[var(--color-fondo)] transition-all duration-300 hover:scale-105 hover:bg-[var(--color-texto)] hover:shadow-[0_0_15px_rgba(241,255,94,0.7)]">Añadir al carrito</button>
                 </div>
             </div>
         </div>
@@ -151,61 +161,5 @@
 @endsection
 
 @section('scripts')
-<script>
-// Carousel
-const track = document.getElementById('carouselTrack');
-const dots = document.querySelectorAll('.carousel-dot');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-let current = 0;
-const total = dots.length;
-
-function goTo(index) {
-    if (index < 0) index = total - 1;
-    if (index >= total) index = 0;
-    current = index;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-}
-
-prevBtn.addEventListener('click', () => goTo(current - 1));
-nextBtn.addEventListener('click', () => goTo(current + 1));
-dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-
-// Auto-play cada 4 segundos
-let autoplay = setInterval(() => goTo(current + 1), 4000);
-
-// Pausar al hover
-track.addEventListener('mouseenter', () => clearInterval(autoplay));
-track.addEventListener('mouseleave', () => {
-    autoplay = setInterval(() => goTo(current + 1), 4000);
-});
-
-// Soporte táctil (swipe)
-let startX = 0;
-track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-track.addEventListener('touchend', e => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-        diff > 0 ? goTo(current + 1) : goTo(current - 1);
-    }
-});
-
-// Service cards interaction
-document.querySelectorAll('.service-card').forEach((card, index) => {
-    card.style.animationDelay = `${index * 0.1}s`;
-
-    const addButton = card.querySelector('.add-button');
-    addButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const serviceName = card.getAttribute('data-service') || 'Servicio';
-        alert(`✨ ${serviceName} añadido a tu solicitud. Pronto nos pondremos en contacto.`);
-    });
-
-    card.addEventListener('click', () => {
-        const serviceName = card.getAttribute('data-service') || 'Servicio';
-        alert(`🔧 Información sobre ${serviceName}. ¿En qué podemos ayudarte?`);
-    });
-});
-</script>
+<script src="{{ asset('js/servicios.js') }}" defer></script>
 @endsection

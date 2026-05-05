@@ -74,36 +74,4 @@ $headerBg = $currentPage === 'home' ? 'fondo' : 'secundario';
 <!-- Overlay -->
 <div class="fixed inset-0 z-[140] hidden bg-black/70" id="overlay"></div>
 
-<script>
-const menuToggle = document.getElementById('menuToggle');
-const navMobile = document.getElementById('navMobile');
-const overlay = document.getElementById('overlay');
-const userIcon = document.getElementById('userIcon');
-const cartIcon = document.getElementById('cartIcon');
 
-function toggleMenu() {
-    navMobile.classList.toggle('active');
-    navMobile.classList.toggle('flex');
-    overlay.classList.toggle('active');
-    overlay.classList.toggle('block');
-    overlay.classList.toggle('hidden');
-    document.body.style.overflow = navMobile.classList.contains('active') ? 'hidden' : '';
-}
-
-menuToggle.addEventListener('click', toggleMenu);
-overlay.addEventListener('click', toggleMenu);
-
-document.querySelectorAll('#navMobile a').forEach(link => {
-    link.addEventListener('click', () => {
-        if(navMobile.classList.contains('active')) toggleMenu();
-    });
-});
-
-userIcon.addEventListener('click', () => {
-    alert('👤 Acceso a tu cuenta - Próximamente disponible');
-});
-
-cartIcon.addEventListener('click', () => {
-    alert('🛒 Tu carrito está vacío. Explora nuestros servicios');
-});
-</script>

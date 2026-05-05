@@ -1,0 +1,81 @@
+.carousel-track {
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.carousel-dot.active {
+    background: var(--color-acento);
+    transform: scale(1.2);
+}
+.carousel-dot:hover {
+    background: var(--color-acento);
+}
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 25px;
+    padding: 5px 10px;
+}
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    background: rgba(241,255,94,0.2);
+    border: none;
+    border-radius: 50%;
+    color: #f1ff5e;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+.qty-btn:hover {
+    background: rgba(241,255,94,0.4);
+    transform: scale(1.1);
+}
+.qty-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+.qty-value {
+    font-family: 'sourcesanspro', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #ffffff;
+    min-width: 24px;
+    text-align: center;
+}
+.add-to-cart-btn {
+    height: 40px;
+    padding: 0 20px;
+    background: #f1ff5e;
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #1c0770;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'sourcesanspro', sans-serif;
+    white-space: nowrap;
+}
+.add-to-cart-btn:hover {
+    transform: scale(1.05);
+    background: #ffffff;
+    box-shadow: 0 0 15px rgba(241,255,94,0.7);
+}
