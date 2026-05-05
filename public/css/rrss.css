@@ -1,0 +1,128 @@
+/* ========== RRSS Page Styles ========== */
+
+.rrss-box {
+    background: #3a9aff;
+    border-radius: 58px;
+    padding: 40px 30px 60px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+.rrss-box:hover {
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.page-title {
+    font-family: 'Montserrat', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 6vw, 48px);
+    color: #f1ff5e;
+    text-align: center;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+/* Grid de redes sociales */
+.social-grid {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.social-card {
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    animation: fadeInUp 0.6s ease backwards;
+}
+.social-card:hover {
+    transform: translateY(-10px);
+}
+
+.social-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.social-card:hover .social-icon {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Iconos específicos */
+.social-icon.facebook {
+    background: #1877f2;
+}
+.social-icon.instagram {
+    background: radial-gradient(circle at 30% 110%, #ffdb8c, #ffd000, #d5007d, #a1006b);
+}
+.social-icon.twitter {
+    background: #000000;
+}
+
+.social-icon svg {
+    width: 60px;
+    height: 60px;
+}
+
+.social-name {
+    font-family: 'Montserrat', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 4vw, 34px);
+    color: #f1ff5e;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .social-grid {
+        gap: 40px;
+    }
+    .social-icon {
+        width: 100px;
+        height: 100px;
+    }
+    .social-icon svg {
+        width: 50px;
+        height: 50px;
+    }
+    .rrss-box {
+        padding: 30px 20px 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-grid {
+        gap: 30px;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .social-icon {
+        width: 80px;
+        height: 80px;
+    }
+    .social-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+    .social-name {
+        font-size: 20px;
+    }
+    .rrss-box {
+        border-radius: 30px;
+    }
+}

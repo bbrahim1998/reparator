@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --color-primario: #3A9AFF;
+    --color-secundario: #261CC1;
+    --color-fondo: #1C0770;
+    --color-texto: #ffffff;
+    --color-acento: #F1FF5E;
+}
+
+@layer base {
+    html {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+    }
+    body {
+        font-family: 'Roboto', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+        line-height: 1.7;
+        color: var(--color-texto);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.3;
+    }
+    p {
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+    a {
+        font-size: 1rem;
+    }
+}
+
+/* ========== LO QUE TAILWIND NO PUEDE HACER ========== */
+
+/* Animación fadeInUp */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease;
+}
+
+/* Underline animado en nav-desktop links */
+.nav-link-desktop {
+    position: relative;
+}
+.nav-link-desktop::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-acento);
+    transition: width 0.3s ease;
+}
+.nav-link-desktop:hover::after,
+.nav-link-desktop.active::after {
+    width: 100%;
+}
+
+/* FAQ accordion - max-height transition */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 25px;
+}
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 0 25px 20px 25px;
+}
+
+/* FAQ icon rotation on active */
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}

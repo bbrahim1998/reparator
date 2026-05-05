@@ -1,0 +1,129 @@
+/* ========== On Som (Ubicación) Page Styles ========== */
+
+.location-box {
+    background: #3a9aff;
+    border-radius: 58px;
+    padding: 40px;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease;
+}
+.location-box:hover {
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.page-title {
+    font-family: 'Montserrat', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 6vw, 48px);
+    color: #f1ff5e;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+/* Contenedor del mapa */
+.map-container {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+.map-container:hover {
+    transform: scale(1.01);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+.map-container iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+    display: block;
+}
+
+/* Información de contacto adicional */
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+.info-card {
+    background: rgba(38, 28, 193, 0.6);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 25px 20px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(241,255,94,0.3);
+    animation: fadeInUp 0.6s ease backwards;
+}
+.info-card:hover {
+    transform: translateY(-5px);
+    border-color: #f1ff5e;
+    background: rgba(38, 28, 193, 0.8);
+}
+.info-card:nth-child(1) { animation-delay: 0.1s; }
+.info-card:nth-child(2) { animation-delay: 0.2s; }
+.info-card:nth-child(3) { animation-delay: 0.3s; }
+
+.info-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+.info-card h3 {
+    font-family: 'Montserrat', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(17px, 2vw, 20px);
+    color: #f1ff5e;
+    margin-bottom: 10px;
+}
+.info-card p {
+    font-family: 'Roboto', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(15px, 1.8vw, 17px);
+    color: #ffffff;
+    line-height: 1.7;
+}
+.info-card a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.info-card a:hover {
+    color: #f1ff5e;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .location-box {
+        padding: 30px 20px;
+        border-radius: 40px;
+    }
+    .map-container iframe {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-info {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .location-box {
+        padding: 25px 15px;
+        border-radius: 30px;
+    }
+    .map-container iframe {
+        height: 250px;
+    }
+    .info-card {
+        padding: 20px 15px;
+    }
+    .info-icon {
+        font-size: 32px;
+    }
+}
