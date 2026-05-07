@@ -35,7 +35,7 @@ $headerBg = $currentPage === 'home' ? 'fondo' : 'secundario';
     <!-- Iconos y menú hamburguesa -->
         <div class="flex items-center gap-2.5">
             <div class="flex items-center gap-4">
-                <button class="flex size-[55px] items-center justify-center rounded-full bg-white/5 transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/20 hover:shadow-[0_0_12px_rgba(241,255,94,0.4)] lg:size-[45px]" id="userIcon">
+                <button class="flex size-[55px] items-center justify-center rounded-full bg-white/5 transition-all duration-300 hover:scale-110 hover:bg-[var(--color-acento)]/20 hover:shadow-[0_0_12px_rgba(241,255,94,0.4)] lg:size-[45px]" id="userIcon" onclick="openLoginModal()">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--color-acento)]">
                     <circle cx="12" cy="8" r="4"/>
                     <path d="M5 20v-2a7 7 0 0 1 14 0v2"/>

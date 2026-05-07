@@ -1,0 +1,116 @@
+// Función que abre el modal de login
+function openLoginModal() {
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+//Funcion que cierra el modal de login
+function closeLoginModal() {
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+//Funcion que abre el modal de registro
+function openRegisterModal() {
+    const modal = document.getElementById('registerModal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+//Funcion que cierra el modal de registro
+function closeRegisterModal() {
+    const modal = document.getElementById('registerModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Funciones para cambiar a login
+function switchToLogin() {
+    closeRegisterModal();
+    setTimeout(openLoginModal, 100);
+}
+
+// Función para cambiar del modal de login al de registro
+function switchToRegister() {
+    closeLoginModal();
+    setTimeout(openRegisterModal, 100);
+}
+
+// Inicialización de eventos para los modales
+function initAuthModals() {
+    if (window.hasValidationErrors) {
+        openRegisterModal();
+    }
+
+    const closeLoginBtn = document.getElementById('closeLoginModal');
+    const closeRegisterBtn = document.getElementById('closeRegisterModal');
+    const loginOverlay = document.getElementById('loginOverlay');
+    const registerOverlay = document.getElementById('registerOverlay');
+    const showRegisterFromLogin = document.getElementById('showRegisterFromLogin');
+    const showLoginFromRegister = document.getElementById('showLoginFromRegister');
+
+    if (closeLoginBtn) closeLoginBtn.addEventListener('click', closeLoginModal);
+    if (closeRegisterBtn) closeRegisterBtn.addEventListener('click', closeRegisterModal);
+    if (loginOverlay) loginOverlay.addEventListener('click', closeLoginModal);
+    if (registerOverlay) registerOverlay.addEventListener('click', closeRegisterModal);
+
+    if (showRegisterFromLogin) {
+        showRegisterFromLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            switchToRegister();
+        });
+    }
+
+    if (showLoginFromRegister) {
+        showLoginFromRegister.addEventListener('click', function(e) {
+            e.preventDefault();
+            switchToLogin();
+        });
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLoginModal();
+            closeRegisterModal();
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initAuthModals);
+
+function validateField(fieldId, isValid) {
+    const el = $(`#${fieldId}`);
+    el.removeClass('border-white/10 border-green-500 border-red-500');
+    el.addClass(isValid ? 'border-green-500' : 'border-red-500');
+}
+
+//Validar el campo de nombre para que solo acepte letras, y maximo dos nombres separados por un espacio, y no acepte campos vacios
+function validateFirstName() {
+    validateFirstName('name');
+}
+function validateMaximum2(id) {
+    $(`#${id}`).on('change', function() {
+        const value = $(this).val();
+        const isValid = /^[a-zA-Zñç]+ {0,1}[a-zA-Zñç]*$/.test(value) && value.trim() !== '';
+        validateField(id, isValid);
+    });
+}
+function validateLastName() {
+    validateMaximum2('last_name');
+}
+
+$(document).ready(validateFirstName);

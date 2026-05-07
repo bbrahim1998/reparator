@@ -22,11 +22,7 @@ document.querySelectorAll('#navMobile a').forEach(link => {
     });
 });
 
-if (userIcon) {
-    userIcon.addEventListener('click', () => {
-        alert('👤 Acceso a tu cuenta - Próximamente disponible');
-    });
-}
+
 
 if (cartIcon) {
     cartIcon.addEventListener('click', () => {

@@ -2,87 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========== FUENTES ========== */
+@font-face {
+    font-family: 'sourcesanspro';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(https://design.penpot.app/fonts/sourcesanspro-black.woff) format('woff');
+}
+@font-face {
+    font-family: 'sourcesanspro';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://design.penpot.app/fonts/sourcesanspro-regular.woff) format('woff');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://design.penpot.app/internal/gfonts/font/roboto/v51/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbVmUiAo.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://design.penpot.app/internal/gfonts/font/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXo.woff2) format('woff2');
+}
+
+/* ========== VARIABLES CSS ========== */
 :root {
-    --color-primario: #3A9AFF;
-    --color-secundario: #261CC1;
-    --color-fondo: #1C0770;
+    --color-fondo: #1c0770;
+    --color-secundario: #261cc1;
+    --color-acento: #f1ff5e;
     --color-texto: #ffffff;
-    --color-acento: #F1FF5E;
 }
 
+/* ========== COMPONENTES PERSONALIZADOS ========== */
+@layer components {
+    .font-titulos {
+        font-family: 'sourcesanspro', 'Roboto', sans-serif;
+    }
+
+    .font-parrafos {
+        font-family: 'Roboto', 'sourcesanspro', sans-serif;
+    }
+}
+
+/* ========== ESTILOS BASE ========== */
 @layer base {
-    html {
-        font-size: 16px;
-        -webkit-text-size-adjust: 100%;
-    }
     body {
-        font-family: 'Roboto', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-        line-height: 1.7;
+        font-family: 'sourcesanspro', 'Roboto', sans-serif;
+        background: var(--color-fondo);
         color: var(--color-texto);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
     }
-    h1, h2, h3, h4, h5, h6 {
-        line-height: 1.3;
-    }
-    p {
-        font-size: 1rem;
-        line-height: 1.75;
-    }
-    a {
-        font-size: 1rem;
-    }
-}
-
-/* ========== LO QUE TAILWIND NO PUEDE HACER ========== */
-
-/* Animación fadeInUp */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.animate-fade-in-up {
-    animation: fadeInUp 0.8s ease;
-}
-
-/* Underline animado en nav-desktop links */
-.nav-link-desktop {
-    position: relative;
-}
-.nav-link-desktop::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--color-acento);
-    transition: width 0.3s ease;
-}
-.nav-link-desktop:hover::after,
-.nav-link-desktop.active::after {
-    width: 100%;
-}
-
-/* FAQ accordion - max-height transition */
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.4s ease;
-    padding: 0 25px;
-}
-.faq-item.active .faq-answer {
-    max-height: 500px;
-    padding: 0 25px 20px 25px;
-}
-
-/* FAQ icon rotation on active */
-.faq-item.active .faq-icon {
-    transform: rotate(45deg);
 }

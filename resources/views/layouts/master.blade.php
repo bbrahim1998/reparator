@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('styles')
 </head>
 <body>
@@ -24,7 +24,20 @@
         @endif
     </div>
 
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
+    <script src="{{ asset('js/autenticacion.js') }}" defer></script>
     @yield('scripts')
+
+    <!-- Modales de autenticación -->
+    @guest
+        @include('auth.login')
+        @include('auth.register')
+    @endguest
+
+    <script>
+        @if($errors->any())
+            window.hasValidationErrors = true;
+        @endif
+    </script>
 </body>
 </html>

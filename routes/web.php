@@ -1,31 +1,27 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome', ['currentPage' => 'home']);
+    return view('welcome');
 });
 
-Route::get('/onsom', function () {
-    return view('onsom', ['currentPage' => 'onsom']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/servicios', function () {
-    return view('servicios', ['currentPage' => 'servicios']);
-});
+Route::view('/presentacion', 'presentacion', ['currentPage' => 'presentacion']);
+Route::view('/servicios', 'servicios', ['currentPage' => 'servicios']);
+Route::view('/rrss', 'rrss', ['currentPage' => 'rrss']);
+Route::view('/consultasyreclamaciones', 'consultasyreclamaciones', ['currentPage' => 'consultasyreclamaciones']);
+Route::view('/onsom', 'onsom', ['currentPage' => 'onsom']);
+Route::view('/faqs', 'faqs', ['currentPage' => 'faqs']);
 
-Route::get('/presentacion', function () {
-    return view('presentacion', ['currentPage' => 'presentacion']);
-});
-
-Route::get('/faqs', function () {
-    return view('faqs', ['currentPage' => 'faqs']);
-});
-
-Route::get('/consultasyreclamaciones', function () {
-    return view('consultasyreclamaciones', ['currentPage' => 'consultasyreclamaciones']);
-});
-
-Route::get('/rrss', function () {
-    return view('rrss', ['currentPage' => 'rrss']);
-});
+require __DIR__.'/auth.php';
