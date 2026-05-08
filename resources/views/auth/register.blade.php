@@ -35,7 +35,7 @@
                     <label for="apellidos" class="font-titulos block text-sm font-semibold text-[var(--color-texto)] mb-2">Apellidos *</label>
                     <input id="apellidos" type="text" name="apellidos" value="{{ old('apellidos') }}" required
                            placeholder="Tus apellidos"
-                           class="w-full px-4 py-3 bg-[var(--color-fondo)] border border-white/10 rounded-lg text-[var(--color-texto)] placeholder-white/30 hover:border-white/25 hover:bg-[var(--color-fondo)]/80 focus:border-[var(--color-acento)] focus:ring-2 focus:ring-[var(--color-acento)]/30 focus:bg-[var(--color-fondo)] focus:outline-none transition-all duration-300 font-parrafos">
+                           class="w-full px-4 py-3 bg-[var(--color-fondo)] border border-white/10 rounded-lg text-[var(--color-texto)] placeholder-white/30 hover:bg-[var(--color-fondo)]/80 focus:border-[var(--color-acento)] focus:ring-2 focus:ring-[var(--color-acento)]/30 focus:bg-[var(--color-fondo)] focus:outline-none transition-all duration-300 font-parrafos">
                     @error('apellidos')
                         <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -45,7 +45,7 @@
                 <div class="mb-4">
                     <label for="fecha_nacimiento" class="font-titulos block text-sm font-semibold text-[var(--color-texto)] mb-2">Fecha de Nacimiento *</label>
                     <input id="fecha_nacimiento" type="date" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" required
-                           class="w-full px-4 py-3 bg-[var(--color-fondo)] border border-white/10 rounded-lg text-[var(--color-texto)] hover:border-white/25 hover:bg-[var(--color-fondo)]/80 focus:border-[var(--color-acento)] focus:ring-2 focus:ring-[var(--color-acento)]/30 focus:bg-[var(--color-fondo)] focus:outline-none transition-all duration-300 font-parrafos [color-scheme:dark]">
+                           class="w-full px-4 py-3 bg-[var(--color-fondo)] border border-white/10 rounded-lg text-[var(--color-texto)] hover:bg-[var(--color-fondo)]/80 focus:border-[var(--color-acento)] focus:ring-2 focus:ring-[var(--color-acento)]/30 focus:bg-[var(--color-fondo)] focus:outline-none transition-all duration-300 font-parrafos [color-scheme:dark]">
                     @error('fecha_nacimiento')
                         <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -55,7 +55,7 @@
                 <div class="mb-4">
                     <label for="telefono" class="font-titulos block text-sm font-semibold text-[var(--color-texto)] mb-2">Teléfono *</label>
                     <div class="flex gap-2">
-                        <select name="telefono_codigo" class="w-24 px-3 py-3 bg-[var(--color-fondo)]/50 border border-white/10 rounded-lg text-[var(--color-texto)] hover:border-white/25 hover:bg-[var(--color-fondo)]/70 focus:border-[var(--color-acento)] focus:ring-2 focus:ring-[var(--color-acento)]/30 focus:bg-[var(--color-fondo)] focus:outline-none transition-all duration-300 font-parrafos text-sm [color-scheme:dark]">
+                        <select id="telefono_codigo" name="telefono_codigo" class="w-24 px-3 py-3 bg-[var(--color-fondo)]/50 border border-white/10 rounded-lg text-[var(--color-texto)] hover:border-white/25 hover:bg-[var(--color-fondo)]/70 focus:border-[var(--color-acento)] focus:ring-2 focus:ring-[var(--color-acento)]/30 focus:bg-[var(--color-fondo)] focus:outline-none transition-all duration-300 font-parrafos text-sm [color-scheme:dark]">
                             <option value="+34">+34 🇪🇸</option>
                             <option value="+33">+33 🇫🇷</option>
                             <option value="+44">+44 🇬🇧</option>
@@ -64,7 +64,7 @@
                             <option value="+1">+1 🇺🇸</option>
                         </select>
                         <input id="telefono" type="tel" name="telefono" value="{{ old('telefono') }}" required placeholder="612345678"
-                               class="flex-1 px-4 py-3 bg-[var(--color-fondo)] border border-white/10 rounded-lg text-[var(--color-texto)] placeholder-white/30 hover:border-white/25 hover:bg-[var(--color-fondo)]/80 focus:border-[var(--color-acento)] focus:ring-2 focus:ring-[var(--color-acento)]/30 focus:bg-[var(--color-fondo)] focus:outline-none transition-all duration-300 font-parrafos">
+                               class="flex-1 px-4 py-3 bg-[var(--color-fondo)] border border-white/10 rounded-lg text-[var(--color-texto)] placeholder-white/30 hover:bg-[var(--color-fondo)]/80 focus:border-[var(--color-acento)] focus:ring-2 focus:ring-[var(--color-acento)]/30 focus:bg-[var(--color-fondo)] focus:outline-none transition-all duration-300 font-parrafos">
                     </div>
                     @error('telefono')
                         <p class="mt-2 text-sm text-red-500">{{ $message }}</p>

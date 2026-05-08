@@ -62,3 +62,23 @@
         overflow-x: hidden;
     }
 }
+
+#registerModal input:focus,
+#registerModal select:focus,
+#registerModal textarea:focus {
+    outline: none;
+}
+
+#registerModal input.border-green-500:focus,
+#registerModal select.border-green-500:focus,
+#registerModal textarea.border-green-500:focus {
+    --tw-ring-color: #22c55e;
+    border-color: #22c55e;
+}
+
+#registerModal input.border-red-500:focus,
+#registerModal select.border-red-500:focus,
+#registerModal textarea.border-red-500:focus {
+    --tw-ring-color: #ef4444;
+    border-color: #ef4444;
+}

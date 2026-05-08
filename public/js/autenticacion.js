@@ -94,23 +94,49 @@ document.addEventListener('DOMContentLoaded', initAuthModals);
 
 function validateField(fieldId, isValid) {
     const el = $(`#${fieldId}`);
+    const color = isValid ? '#22c55e' : '#ef4444';
+    const ringColor = isValid ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)';
+    
+    el.css({
+        'border-color': color,
+        '--tw-ring-color': color
+    });
+    
     el.removeClass('border-white/10 border-green-500 border-red-500');
     el.addClass(isValid ? 'border-green-500' : 'border-red-500');
 }
 
 //Validar el campo de nombre para que solo acepte letras, y maximo dos nombres separados por un espacio, y no acepte campos vacios
-function validateFirstName() {
-    validateFirstName('name');
-}
+
 function validateMaximum2(id) {
-    $(`#${id}`).on('change', function() {
-        const value = $(this).val();
-        const isValid = /^[a-zA-Zñç]+ {0,1}[a-zA-Zñç]*$/.test(value) && value.trim() !== '';
-        validateField(id, isValid);
-    });
-}
-function validateLastName() {
-    validateMaximum2('last_name');
+    const nameValue = $(`#${id}`).val();
+    const isValid = /^[a-zA-Zñç]+ {0,1}[a-zA-Zñç]*$/.test(nameValue) && nameValue.trim() !== '';
+    validateField(id, isValid);
 }
 
-$(document).ready(validateFirstName);
+
+function verificarNumeroInternacional(){
+    const codigo = $('#telefono_codigo').val() || '';
+    const numero = $('#telefono').val() || '';
+    const telefonoCompleto = (codigo + numero)
+        .replace(/^\s+|\s+$/g, '')
+        .replace(/^\+/, '00')
+        .replace(/\s/g, '');
+    const formatoValido = /^(\+|00)?\d{2,3}\s?\d{9}$/;
+    validateField('telefono', formatoValido.test(telefonoCompleto));
+}
+
+function initValidationListeners() {
+    validateMaximum2('name');
+    validateMaximum2('apellidos');
+    $('#name').on('input', function() { validateMaximum2('name'); });
+    $('#name').on('focus', function() { validateMaximum2('name'); });
+    $('#apellidos').on('input', function() { validateMaximum2('apellidos'); });
+    $('#apellidos').on('focus', function() { validateMaximum2('apellidos'); });
+
+    $('#telefono').on('input', verificarNumeroInternacional);
+    $('#telefono_codigo').on('input change', verificarNumeroInternacional);
+    $('#telefono').on('focus', verificarNumeroInternacional);
+}
+
+$(document).ready(initValidationListeners);
