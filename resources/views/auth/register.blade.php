@@ -384,13 +384,18 @@
                         <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
+                <div class="mb-6">
+                    <meter id="password-strength-meter" class="w-full h-2 rounded bg-white/20 mb-1" value="0" min="0" max="5"></meter>
+                    <p id="password-strength-text" class="text-sm text-[var(--color-texto)] mb-0 font-parrafos">Fortaleza de la contraseña <span id="password-strength-text"></span></p>
+                </div>
 
                 <div class="flex items-center justify-between pt-4 border-t border-[var(--color-acento)]/30">
-                    <a href="#" id="showLoginFromRegister" class="font-parrafos text-sm text-[var(--color-texto)] hover:text-[var(--color-acento)] transition-colors underline underline-offset-2">
+                    <a href="#" id="showLoginFromRegister" class="font-parrafos text-sm text-[var(--color-texto)] hover:text-[var(--color-acento)]  transition-colors underline underline-offset-2">
                         ¿Ya tienes cuenta?
                     </a>
 
-                    <button type="submit" class="font-titulos px-6 py-3 bg-[var(--color-acento)] text-[var(--color-fondo)] font-bold rounded-lg hover:bg-[var(--color-acento)]/90 hover:shadow-[0_0_15px_rgba(241,255,94,0.5)] transition-all duration-300">
+                    <button type="submit" id="registerButton"
+                                class="font-titulos px-6 py-3 bg-[var(--color-acento)] text-[var(--color-fondo)] font-bold rounded-lg hover:bg-[var(--color-acento)]/90 hover:shadow-[0_0_15px_rgba(241,255,94,0.5)] transition-all duration-300">
                         REGISTRARSE
                     </button>
                 </div>

@@ -24,8 +24,8 @@
 
                 <!-- Email Address -->
                 <div class="mb-4">
-                    <label for="email" class="font-titulos block text-sm font-semibold text-[var(--color-texto)] mb-2">Email</label>
-                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
+                    <label for="emaillogin" class="font-titulos block text-sm font-semibold text-[var(--color-texto)] mb-2">Email</label>
+                    <input id="emaillogin" type="email" name="emaillogin" value="{{ old('emaillogin') }}" required autofocus
                            class="w-full px-4 py-3 bg-[var(--color-fondo)] border border-[var(--color-acento)]/30 rounded-lg text-[var(--color-texto)] placeholder-white/40 focus:border-[var(--color-acento)] focus:ring-2 focus:ring-[var(--color-acento)]/20 focus:outline-none transition-all font-parrafos">
                     @error('email')
                         <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
@@ -34,8 +34,8 @@
 
                 <!-- Password -->
                 <div class="mb-4">
-                    <label for="password" class="font-titulos block text-sm font-semibold text-[var(--color-texto)] mb-2">Contraseña</label>
-                    <input id="password" type="password" name="password" required
+                    <label for="passwordlogin" class="font-titulos block text-sm font-semibold text-[var(--color-texto)] mb-2">Contraseña</label>
+                    <input id="passwordlogin" type="password" name="passwordlogin" required
                            class="w-full px-4 py-3 bg-[var(--color-fondo)] border border-[var(--color-acento)]/30 rounded-lg text-[var(--color-texto)] placeholder-white/40 focus:border-[var(--color-acento)] focus:ring-2 focus:ring-[var(--color-acento)]/20 focus:outline-none transition-all font-parrafos">
                     @error('password')
                         <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
