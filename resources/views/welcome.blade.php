@@ -31,34 +31,17 @@
 
         <div class="relative overflow-hidden px-4 sm:px-8">
             <div class="carousel-track flex" id="carouselTrack">
+                @foreach($categorias as $categoria)
                 <div class="w-full flex-shrink-0">
                     <div class="cursor-pointer rounded-[24px] border-2 border-[var(--color-primario)] bg-[var(--color-secundario)]/60 p-8 sm:p-10 text-center backdrop-blur-sm transition-all duration-400 hover:border-[var(--color-acento)] hover:bg-[var(--color-secundario)]/90 hover:shadow-[0_15px_30px_rgba(0,0,0,0.3)]">
-                        <div class="mb-5 inline-block text-6xl sm:text-7xl transition-transform duration-300 hover:scale-110">📱</div>
-                        <h3 class="mb-4 font-titulos text-xl sm:text-2xl font-black text-[var(--color-acento)]">Móviles</h3>
-                        <p class="font-parrafos text-base sm:text-lg leading-relaxed text-[var(--color-texto)]">Reparación de pantallas, baterías y componentes internos. Calidad garantizada.</p>
+                        <div class="mb-5 mx-auto size-24 sm:size-28 overflow-hidden rounded-full border-2 border-[var(--color-primario)]">
+                            <img src="{{ asset($categoria->imagen) }}" alt="{{ $categoria->nombre }}" class="size-full object-cover">
+                        </div>
+                        <h3 class="mb-4 font-titulos text-xl sm:text-2xl font-black text-[var(--color-acento)]">{{ $categoria->nombre }}</h3>
+                        <p class="font-parrafos text-base sm:text-lg leading-relaxed text-[var(--color-texto)]">{{ $categoria->descripcion }}</p>
                     </div>
                 </div>
-                <div class="w-full flex-shrink-0">
-                    <div class="cursor-pointer rounded-[24px] border-2 border-[var(--color-primario)] bg-[var(--color-secundario)]/60 p-8 sm:p-10 text-center backdrop-blur-sm transition-all duration-400 hover:border-[var(--color-acento)] hover:bg-[var(--color-secundario)]/90 hover:shadow-[0_15px_30px_rgba(0,0,0,0.3)]">
-                        <div class="mb-5 inline-block text-6xl sm:text-7xl transition-transform duration-300 hover:scale-110">💻</div>
-                        <h3 class="mb-4 font-titulos text-xl sm:text-2xl font-black text-[var(--color-acento)]">Ordenadores</h3>
-                        <p class="font-parrafos text-base sm:text-lg leading-relaxed text-[var(--color-texto)]">Diagnóstico y reparación de portátiles y sobremesas. Hardware y software.</p>
-                    </div>
-                </div>
-                <div class="w-full flex-shrink-0">
-                    <div class="cursor-pointer rounded-[24px] border-2 border-[var(--color-primario)] bg-[var(--color-secundario)]/60 p-8 sm:p-10 text-center backdrop-blur-sm transition-all duration-400 hover:border-[var(--color-acento)] hover:bg-[var(--color-secundario)]/90 hover:shadow-[0_15px_30px_rgba(0,0,0,0.3)]">
-                        <div class="mb-5 inline-block text-6xl sm:text-7xl transition-transform duration-300 hover:scale-110">🎮</div>
-                        <h3 class="mb-4 font-titulos text-xl sm:text-2xl font-black text-[var(--color-acento)]">Consolas</h3>
-                        <p class="font-parrafos text-base sm:text-lg leading-relaxed text-[var(--color-texto)]">Reparación de PS5, Xbox, Nintendo Switch. Limpieza y mantenimiento.</p>
-                    </div>
-                </div>
-                <div class="w-full flex-shrink-0">
-                    <div class="cursor-pointer rounded-[24px] border-2 border-[var(--color-primario)] bg-[var(--color-secundario)]/60 p-8 sm:p-10 text-center backdrop-blur-sm transition-all duration-400 hover:border-[var(--color-acento)] hover:bg-[var(--color-secundario)]/90 hover:shadow-[0_15px_30px_rgba(0,0,0,0.3)]">
-                        <div class="mb-5 inline-block text-6xl sm:text-7xl transition-transform duration-300 hover:scale-110">🔧</div>
-                        <h3 class="mb-4 font-titulos text-xl sm:text-2xl font-black text-[var(--color-acento)]">Electrodomésticos</h3>
-                        <p class="font-parrafos text-base sm:text-lg leading-relaxed text-[var(--color-texto)]">Lavadoras, frigoríficos, microondas. Servicio técnico especializado.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <!-- Flechas -->
@@ -71,10 +54,9 @@
 
             <!-- Dots -->
             <div class="mt-5 sm:mt-7 flex justify-center gap-3" id="carouselDots">
-                <button class="carousel-dot active"></button>
-                <button class="carousel-dot"></button>
-                <button class="carousel-dot"></button>
-                <button class="carousel-dot"></button>
+                @foreach($categorias as $i => $categoria)
+                <button class="carousel-dot {{ $i === 0 ? 'active' : '' }}"></button>
+                @endforeach
             </div>
         </div>
     </div>

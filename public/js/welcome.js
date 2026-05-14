@@ -8,7 +8,7 @@ const dots = document.querySelectorAll('.carousel-dot');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 let current = 0;
-const total = dots.length;
+const total = track.children.length;
 
 function goTo(index) {
     if (index < 0) index = total - 1;

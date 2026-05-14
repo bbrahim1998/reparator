@@ -218,12 +218,21 @@ function validarContrasenaRepetida() {
 }
 
 
+function validarMayorEdad(id) {
+    const fechaNacimiento = new Date($('#' + id).val());
+    const hoy = new Date();
+    const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+    const esMayorEdad = edad > 18 || (edad === 18 && (hoy.getMonth() > fechaNacimiento.getMonth() || (hoy.getMonth() === fechaNacimiento.getMonth() && hoy.getDate() >= fechaNacimiento.getDate())));
+    validateField(id, esMayorEdad);
+}
+
+
 // ============================================================
 // ============================================================
 // CONTROL DEL BOTÓN DE REGISTRO
 // ============================================================
 function mostrarBoton() {
-    var camposVerdes = ['name', 'apellidos', 'email', 'telefono',
+    var camposVerdes = ['name', 'apellidos', 'email', 'telefono', 'fecha_nacimiento',
                         'envio_tipo_via', 'envio_nombre_via', 'envio_numero',
                         'envio_municipio', 'envio_provincia', 'password',
                         'password_confirmation'];
@@ -269,6 +278,8 @@ function initValidationListeners() {
     $('#password_confirmation').on('input', validarContrasenaRepetida);
     $('#password').on('focus', validarContrasenaRepetida);
     $('#password_confirmation').on('focus', validarContrasenaRepetida);
+    $('#fecha_nacimiento').on('input', function() { validarMayorEdad('fecha_nacimiento'); });
+    $('#fecha_nacimiento').on('focus', function() { validarMayorEdad('fecha_nacimiento'); });   
 
     initCamposDireccionEnvio();
 }

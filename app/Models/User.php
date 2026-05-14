@@ -17,7 +17,8 @@ use Illuminate\Notifications\Notifiable;
     'envio_codigo_postal', 'envio_provincia', 'envio_municipio', 'envio_info_adicional',
     'facturacion_tipo_via', 'facturacion_nombre_via', 'facturacion_numero', 'facturacion_piso_puerta',
     'facturacion_codigo_postal', 'facturacion_provincia', 'facturacion_municipio', 'facturacion_info_adicional',
-    'distancia'
+    'distancia',
+    'rol'
 ])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
@@ -35,6 +36,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'rol' => 'string',
         ];
     }
 }

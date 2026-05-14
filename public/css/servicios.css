@@ -1,22 +1,3 @@
-.carousel-track {
-    transition: transform 0.5s ease-in-out;
-}
-.carousel-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.carousel-dot.active {
-    background: var(--color-acento);
-    transform: scale(1.2);
-}
-.carousel-dot:hover {
-    background: var(--color-acento);
-}
 .quantity-selector {
     display: flex;
     align-items: center;
