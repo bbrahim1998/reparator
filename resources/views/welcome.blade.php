@@ -33,13 +33,13 @@
             <div class="carousel-track flex" id="carouselTrack">
                 @foreach($categorias as $categoria)
                 <div class="w-full flex-shrink-0">
-                    <div class="cursor-pointer rounded-[24px] border-2 border-[var(--color-primario)] bg-[var(--color-secundario)]/60 p-8 sm:p-10 text-center backdrop-blur-sm transition-all duration-400 hover:border-[var(--color-acento)] hover:bg-[var(--color-secundario)]/90 hover:shadow-[0_15px_30px_rgba(0,0,0,0.3)]">
+                    <a href="{{ route('servicios', ['categoria' => $categoria->nombre]) }}" class="block cursor-pointer rounded-[24px] border-2 border-[var(--color-primario)] bg-[var(--color-secundario)]/60 p-8 sm:p-10 text-center backdrop-blur-sm transition-all duration-400 hover:border-[var(--color-acento)] hover:bg-[var(--color-secundario)]/90 hover:shadow-[0_15px_30px_rgba(0,0,0,0.3)]">
                         <div class="mb-5 mx-auto size-24 sm:size-28 overflow-hidden rounded-full border-2 border-[var(--color-primario)]">
                             <img src="{{ asset($categoria->imagen) }}" alt="{{ $categoria->nombre }}" class="size-full object-cover">
                         </div>
                         <h3 class="mb-4 font-titulos text-xl sm:text-2xl font-black text-[var(--color-acento)]">{{ $categoria->nombre }}</h3>
                         <p class="font-parrafos text-base sm:text-lg leading-relaxed text-[var(--color-texto)]">{{ $categoria->descripcion }}</p>
-                    </div>
+                    </a>
                 </div>
                 @endforeach
             </div>

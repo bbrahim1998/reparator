@@ -83,3 +83,13 @@
     border-color: #ef4444;
 }
 
+/* Menú móvil: al añadir .active se desliza desde la derecha */
+#navMobile.active {
+    right: 0 !important;
+}
+
+/* Overlay: al añadir .active se muestra */
+#overlay.active {
+    display: block !important;
+}
+

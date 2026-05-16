@@ -127,6 +127,7 @@
         }
         .alert-success { background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
         .alert-error { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .alert-warning { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
         .page-title {
             font-family: 'sourcesanspro', 'Roboto', sans-serif;
             font-weight: 900;
@@ -327,7 +328,15 @@
                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
                     <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                 </svg>
-                Usuarios
+                Administradores
+            </a>
+
+            <a href="{{ route('admin.clientes') }}" class="{{ request()->routeIs('admin.clientes*') ? 'active' : '' }}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                </svg>
+                Clientes
             </a>
 
             <a href="{{ route('admin.categorias') }}" class="{{ request()->routeIs('admin.categorias*') ? 'active' : '' }}">
@@ -345,7 +354,7 @@
                 Productos
             </a>
 
-            <a href="#" class="{{ request()->routeIs('admin.compras*') ? 'active' : '' }}">
+            <a href="{{ route('admin.pedidos') }}" class="{{ request()->routeIs('admin.pedidos*') ? 'active' : '' }}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="9" cy="21" r="1.5"/>
                     <circle cx="18" cy="21" r="1.5"/>

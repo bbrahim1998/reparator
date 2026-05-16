@@ -1,0 +1,15 @@
+/* Mi Cuenta - reused from checkout */
+#guardarCambiosBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+#guardarCambiosBtn:disabled:hover {
+    box-shadow: none;
+    background: var(--color-acento);
+}
+
+/* Date input dark mode fix */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}

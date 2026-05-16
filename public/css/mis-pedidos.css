@@ -1,0 +1,75 @@
+.pedido-card {
+    display: block;
+    background: var(--color-secundario);
+    border: 1px solid rgba(241, 255, 94, 0.15);
+    border-radius: 16px;
+    padding: 20px 24px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.pedido-card:hover {
+    border-color: var(--color-acento);
+    box-shadow: 0 0 20px rgba(241, 255, 94, 0.15);
+    transform: translateY(-2px);
+}
+.pedido-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.pedido-id {
+    font-family: var(--font-titulos, 'Montserrat', sans-serif);
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--color-acento);
+}
+.pedido-date {
+    font-family: var(--font-parrafos, 'Roboto', sans-serif);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+}
+.pedido-card-body {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 12px;
+}
+.pedido-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.pedido-label {
+    font-family: var(--font-parrafos, 'Roboto', sans-serif);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.pedido-value {
+    font-family: var(--font-titulos, 'Montserrat', sans-serif);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--color-texto);
+}
+.pedido-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.pedido-comment {
+    font-family: var(--font-parrafos, 'Roboto', sans-serif);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: capitalize;
+}
+.pedido-arrow {
+    font-size: 18px;
+    color: var(--color-acento);
+    transition: transform 0.2s ease;
+}
+.pedido-card:hover .pedido-arrow {
+    transform: translateX(4px);
+}

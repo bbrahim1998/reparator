@@ -403,8 +403,3 @@
         </div>
     </div>
 </div>
-
-<script src="{{ asset('js/autenticacion.js') }}"></script>
-<script>
-
-</script>

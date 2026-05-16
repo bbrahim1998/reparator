@@ -1,4 +1,13 @@
-// Función que abre el modal de login
+// ========================================================================
+//  AUTENTICACIÓN
+//  Gestiona los modales de login y registro, el dropdown de usuario y
+//  la validación de todos los campos del formulario de registro.
+// ========================================================================
+
+// ─── Modales de Login y Registro ──────────────────────────────────────
+// Estas funciones se exponen a window para los onclick del HTML.
+
+/** Abre el modal de inicio de sesión */
 function openLoginModal() {
     const modal = document.getElementById('loginModal');
     if (modal) {
@@ -8,7 +17,7 @@ function openLoginModal() {
     }
 }
 
-//Funcion que cierra el modal de login
+/** Cierra el modal de inicio de sesión */
 function closeLoginModal() {
     const modal = document.getElementById('loginModal');
     if (modal) {
@@ -18,7 +27,7 @@ function closeLoginModal() {
     }
 }
 
-//Funcion que abre el modal de registro
+/** Abre el modal de registro */
 function openRegisterModal() {
     const modal = document.getElementById('registerModal');
     if (modal) {
@@ -28,7 +37,7 @@ function openRegisterModal() {
     }
 }
 
-//Funcion que cierra el modal de registro
+/** Cierra el modal de registro */
 function closeRegisterModal() {
     const modal = document.getElementById('registerModal');
     if (modal) {
@@ -38,19 +47,56 @@ function closeRegisterModal() {
     }
 }
 
-// Funciones para cambiar a login
+// Exponer funciones al scope global para los onclick del HTML
+if (typeof window !== 'undefined') {
+    window.openLoginModal = openLoginModal;
+    window.closeLoginModal = closeLoginModal;
+    window.openRegisterModal = openRegisterModal;
+    window.closeRegisterModal = closeRegisterModal;
+}
+
+// ─── Dropdown de usuario ──────────────────────────────────────────────
+
+/** Abre/cierra el menú desplegable del usuario */
+function toggleUserDropdown() {
+    const userDropdownMenu = document.getElementById('userDropdownMenu');
+    if (userDropdownMenu) {
+        userDropdownMenu.classList.toggle('hidden');
+    }
+}
+
+if (typeof window !== 'undefined') {
+    window.toggleUserDropdown = toggleUserDropdown;
+}
+
+// Cerrar dropdown al hacer click fuera
+document.addEventListener('click', function(event) {
+    const userDropdownBtn = document.getElementById('userDropdownBtn');
+    const userDropdownMenu = document.getElementById('userDropdownMenu');
+    if (userDropdownBtn && userDropdownMenu) {
+        if (!userDropdownBtn.contains(event.target) && !userDropdownMenu.contains(event.target)) {
+            userDropdownMenu.classList.add('hidden');
+        }
+    }
+});
+
+// ─── Cambio entre modales ─────────────────────────────────────────────
+
+/** Cierra registro y abre login */
 function switchToLogin() {
     closeRegisterModal();
     setTimeout(openLoginModal, 100);
 }
 
-// Función para cambiar del modal de login al de registro
+/** Cierra login y abre registro */
 function switchToRegister() {
     closeLoginModal();
     setTimeout(openRegisterModal, 100);
 }
 
-// Inicialización de eventos para los modales
+// ─── Inicialización de modales ────────────────────────────────────────
+
+/** Configura eventos de los modales al cargar el DOM */
 function initAuthModals() {
     if (window.hasValidationErrors) {
         openRegisterModal();
@@ -100,188 +146,185 @@ function initAuthModals() {
 
 document.addEventListener('DOMContentLoaded', initAuthModals);
 
+// ─── Validación de campos ─────────────────────────────────────────────
+
+/**
+ * Aplica estilos visuales a un campo según si es válido o no.
+ * @param {string} fieldId - ID del campo del formulario
+ * @param {boolean} isValid - true si el campo es válido
+ */
 function validateField(fieldId, isValid) {
     const el = $(`#${fieldId}`);
     const color = isValid ? '#22c55e' : '#ef4444';
-    const ringColor = isValid ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)';
-    
+    const borderClass = isValid ? 'border-green-500' : 'border-red-500';
+
     el.css({
         'border-color': color,
-        '--tw-ring-color': color
+        '--tw-ring-color': isValid ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)'
     });
-    
+
     el.removeClass('border-white/10 border-green-500 border-red-500');
-    el.addClass(isValid ? 'border-green-500' : 'border-red-500');
-    mostrarBoton();
+    el.addClass(borderClass);
+    updateRegisterButtonStatus();
 }
 
-//Validar el campo de nombre para que solo acepte letras, y maximo dos nombres separados por un espacio, y no acepte campos vacios
-
+/**
+ * Valida que el campo nombre/apellidos contenga solo letras,
+ * máximo dos palabras separadas por espacio, y no esté vacío.
+ */
 function validateMaximum2(id) {
-    const nameValue = $(`#${id}`).val();
+    const element = $(`#${id}`);
+    if (element.length === 0) return;
+    const nameValue = element.val() || '';
     const isValid = /^[a-zA-Zñç]+ {0,1}[a-zA-Zñç]*$/.test(nameValue) && nameValue.trim() !== '';
     validateField(id, isValid);
 }
 
-//verificamos que el numero de telefono sea valido, puede empezar con + o 00, seguido de 2 o 3 digitos del codigo de pais, un espacio opcional y luego 9 digitos del numero, y no acepte campos vacios
-function verificarNumeroInternacional(){
-    const codigo = $('#telefono_codigo').val() || '';
-    const numero = $('#telefono').val() || '';
-    const telefonoCompleto = (codigo + numero)
+/**
+ * Valida un número de teléfono internacional:
+ * puede empezar con + o 00, código de país de 2-3 dígitos,
+ * espacio opcional y 9 dígitos del número.
+ */
+function validateInternationalPhone() {
+    const countryCode = $('#telefono_codigo').val() || '';
+    const phoneNumber = $('#telefono').val() || '';
+    const fullPhone = (countryCode + phoneNumber)
         .replace(/^\s+|\s+$/g, '')
         .replace(/^\+/, '00')
         .replace(/\s/g, '');
-    const formatoValido = /^(\+|00)?\d{2,3}\s?\d{9}$/;
-    validateField('telefono', formatoValido.test(telefonoCompleto));
+    const validPattern = /^(\+|00)?\d{2,3}\s?\d{9}$/;
+    validateField('telefono', validPattern.test(fullPhone));
 }
 
-function verificarEmail(){
-    patronEmailCorrecto = /^[a-z\d.\-_]{1,64}@[\w.]{1,255}((\.[a-z]+)){1}.{0}$/
-    /**
-     * ^[a-z\d.\-_] significa que empieza por cualquier letra minuscula, digito, guion o barra baja
-     * ^[a-z\d.-_]{1,64} estos caracteres posibles pueden repetirse entre 1 y 64 veces
-     * @ presencia de arroba (al ser una unica vez, no le he puesto ningun indice)
-     * [\w._]{1,255} para el nombre del dominio, vale letras mayusculas y minusculas, guin bajo y punto, que se pueden repetir hasta un maximo de 255
-     * ((\.[a-z]+)) despues de estos caracteres, tiene que haber la secuencia de punto seguido de 1 o mas letras
-     * .{0}$ no tiene que terminar en .
-     */
+/**
+ * Valida el formato del email contra un patrón de correo estándar.
+ */
+function validateEmailField() {
+    var emailPattern = /^[a-z\d.\-_]{1,64}@[\w.]{1,255}((\.[a-z]+)){1}.{0}$/;
     const email = $('#email').val() || '';
-    console.log('Email ingresado:', email);
-    validateField('email', patronEmailCorrecto.test(email));
-    
-
+    validateField('email', emailPattern.test(email));
 }
 
-
-
-
-
-// ============================================================
-// VALIDACIÓN DE CAMPOS REQUERIDOS DE DIRECCIÓN DE ENVÍO
-// ============================================================
-
-function validarRequerido(id) {
-    var valor = $('#' + id).val();
+/**
+ * Valida que un campo requerido no esté vacío.
+ */
+function validateRequired(id) {
+    const element = $('#' + id);
+    if (element.length === 0) return;
+    var valor = element.val();
     var valido = valor && valor.trim() !== '';
     validateField(id, valido);
 }
 
-function initCamposDireccionEnvio() {
-    var campos = ['envio_tipo_via', 'envio_nombre_via', 'envio_numero', 'envio_municipio', 'envio_provincia'];
-    campos.forEach(function(id) {
-        validarRequerido(id);
+/** Inicializa la validación de los campos de dirección de envío */
+function initShippingAddressFields() {
+    var fields = ['envio_tipo_via', 'envio_nombre_via', 'envio_numero', 'envio_municipio', 'envio_provincia'];
+    fields.forEach(function(id) {
+        validateRequired(id);
         if ($('#' + id).is('select')) {
-            $('#' + id).on('change', function() { validarRequerido(id); });
+            $('#' + id).on('change', function() { validateRequired(id); });
         } else {
-            $('#' + id).on('input', function() { validarRequerido(id); });
+            $('#' + id).on('input', function() { validateRequired(id); });
         }
-        $('#' + id).on('focus', function() { validarRequerido(id); });
+        $('#' + id).on('focus', function() { validateRequired(id); });
     });
 }
 
-//Validacion de campo contreseña
-function validarContrasenaRepetida() {
-    const contrasena = $('#password').val() || '';
-    const confiramcion = $('#password_confirmation').val() || '';
-    let valorLogintud = 0;
-    let valorMayuscula = 0, valorMinuscula = 0, valorNumero = 0, valorCaracterEspecial = 0  ;
-    if(contrasena.length >= 8) valorLogintud = 1;
-    if(/[A-Z]/.test(contrasena)) valorMayuscula = 1;
-    if(/[a-z]/.test(contrasena)) valorMinuscula = 1;
-    if(/\d/.test(contrasena)) valorNumero = 1;
-    if(/[@$!%*?&]/.test(contrasena)) valorCaracterEspecial = 1;
-    fortaleza = valorLogintud + valorMayuscula + valorMinuscula + valorNumero + valorCaracterEspecial;
-    switch(fortaleza) {
-        case 5:
-            fortalezaText = "muy fuerte";
-            break;
-        case 4:
-            fortalezaText = "fuerte";
-            break;
-        case 3:
-            fortalezaText = "media";
-            break;
-        case 2:
-            fortalezaText = "débil";
-            break;
-        default:
-            fortalezaText = "muy débil";
+/**
+ * Valida la fortaleza de la contraseña y que coincida con su confirmación.
+ * Requiere: mínimo 8 caracteres, mayúscula, minúscula, dígito, especial.
+ */
+function validatePasswordMatch() {
+    const password = $('#password').val() || '';
+    const confirmation = $('#password_confirmation').val() || '';
+    var strengthScore = 0;
+    if (password.length >= 8) strengthScore += 1;
+    if (/[A-Z]/.test(password)) strengthScore += 1;
+    if (/[a-z]/.test(password)) strengthScore += 1;
+    if (/\d/.test(password)) strengthScore += 1;
+    if (/[@$!%*?&]/.test(password)) strengthScore += 1;
+
+    var strengthLabel = '';
+    switch(strengthScore) {
+        case 5: strengthLabel = 'muy fuerte'; break;
+        case 4: strengthLabel = 'fuerte'; break;
+        case 3: strengthLabel = 'media'; break;
+        case 2: strengthLabel = 'débil'; break;
+        default: strengthLabel = 'muy débil';
     }
-    $('#password-strength-meter').val(fortaleza);
-    $('#password-strength-text').text(fortalezaText);
+    $('#password-strength-meter').val(strengthScore);
+    $('#password-strength-text').text(strengthLabel);
 
-    valorLogintud = contrasena.length >= 8;
-    const esValida = contrasena.length >= 8 && confiramcion === contrasena;
-    validateField('password', contrasena.length >= 8);
-    // console.log('Contraseña:', contrasena, 'Confirmación:', confiramcion, 'Fortaleza:', fortalezaText, '¿Es válida?', esValida);
-    validateField('password_confirmation', esValida);
+    const passwordsMatch = password.length >= 8 && confirmation === password;
+    validateField('password', password.length >= 8);
+    validateField('password_confirmation', passwordsMatch);
 }
 
-
-function validarMayorEdad(id) {
-    const fechaNacimiento = new Date($('#' + id).val());
-    const hoy = new Date();
-    const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-    const esMayorEdad = edad > 18 || (edad === 18 && (hoy.getMonth() > fechaNacimiento.getMonth() || (hoy.getMonth() === fechaNacimiento.getMonth() && hoy.getDate() >= fechaNacimiento.getDate())));
-    validateField(id, esMayorEdad);
+/**
+ * Valida que el usuario sea mayor de 18 años según su fecha de nacimiento.
+ */
+function validateLegalAge(id) {
+    const element = $('#' + id);
+    if (element.length === 0) return;
+    const birthDate = new Date(element.val());
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const isAdult = age > 18 || (age === 18 &&
+        (today.getMonth() > birthDate.getMonth() ||
+        (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate())));
+    validateField(id, isAdult);
 }
 
+// ─── Control del botón de registro ───────────────────────────────────
 
-// ============================================================
-// ============================================================
-// CONTROL DEL BOTÓN DE REGISTRO
-// ============================================================
-function mostrarBoton() {
-    var camposVerdes = ['name', 'apellidos', 'email', 'telefono', 'fecha_nacimiento',
-                        'envio_tipo_via', 'envio_nombre_via', 'envio_numero',
-                        'envio_municipio', 'envio_provincia', 'password',
-                        'password_confirmation'];
-    var todoValido = camposVerdes.every(function(id) {
+/** Habilita o deshabilita el botón de registro según la validez de todos los campos */
+function updateRegisterButtonStatus() {
+    var greenFields = ['name', 'apellidos', 'email', 'telefono', 'fecha_nacimiento',
+                       'envio_tipo_via', 'envio_nombre_via', 'envio_numero',
+                       'envio_municipio', 'envio_provincia', 'password',
+                       'password_confirmation'];
+    var allValid = greenFields.every(function(id) {
         return $('#' + id).hasClass('border-green-500');
     });
-    if(todoValido) {
-        console.log('Todos los campos son válidos. Habilitando botón de registro.');
+    if (allValid) {
         $('#registerButton').addClass('bg-[var(--color-acento)]');
         $('#registerButton').removeClass('text-[var(--color-acento)]');
         $('#registerButton').prop('disabled', false);
-        console.log('Campo habilitado:', $('#registerButton').prop('disabled'));
-
     } else {
-        console.log('No todos los campos son válidos. Deshabilitando botón de registro.');
         $('#registerButton').removeClass('bg-[var(--color-acento)]');
         $('#registerButton').addClass('text-[var(--color-fondo)]');
         $('#registerButton').prop('disabled', true);
-        console.log('Campo deshabilitado:', $('#registerButton').prop('disabled'));
     }
-    
 }
-// ============================================================
 
+// ─── Inicialización de listeners de validación ────────────────────────
+
+/** Vincula eventos de validación a todos los campos del formulario de registro */
 function initValidationListeners() {
     validateMaximum2('name');
     validateMaximum2('apellidos');
-    verificarEmail();
+    validateEmailField();
     $('#name').on('input', function() { validateMaximum2('name'); });
     $('#name').on('focus', function() { validateMaximum2('name'); });
     $('#apellidos').on('input', function() { validateMaximum2('apellidos'); });
     $('#apellidos').on('focus', function() { validateMaximum2('apellidos'); });
 
-    $('#telefono').on('input', verificarNumeroInternacional);
-    $('#telefono_codigo').on('input change', verificarNumeroInternacional);
-    $('#telefono').on('focus', verificarNumeroInternacional);
-    
-    $('#email').on('input', verificarEmail);
-    $('#email').on('focus', verificarEmail);
+    $('#telefono').on('input', validateInternationalPhone);
+    $('#telefono_codigo').on('input change', validateInternationalPhone);
+    $('#telefono').on('focus', validateInternationalPhone);
 
-    validarContrasenaRepetida();
-    $('#password').on('input', validarContrasenaRepetida);
-    $('#password_confirmation').on('input', validarContrasenaRepetida);
-    $('#password').on('focus', validarContrasenaRepetida);
-    $('#password_confirmation').on('focus', validarContrasenaRepetida);
-    $('#fecha_nacimiento').on('input', function() { validarMayorEdad('fecha_nacimiento'); });
-    $('#fecha_nacimiento').on('focus', function() { validarMayorEdad('fecha_nacimiento'); });   
+    $('#email').on('input', validateEmailField);
+    $('#email').on('focus', validateEmailField);
 
-    initCamposDireccionEnvio();
+    validatePasswordMatch();
+    $('#password').on('input', validatePasswordMatch);
+    $('#password_confirmation').on('input', validatePasswordMatch);
+    $('#password').on('focus', validatePasswordMatch);
+    $('#password_confirmation').on('focus', validatePasswordMatch);
+    $('#fecha_nacimiento').on('input', function() { validateLegalAge('fecha_nacimiento'); });
+    $('#fecha_nacimiento').on('focus', function() { validateLegalAge('fecha_nacimiento'); });
+
+    initShippingAddressFields();
 }
 
 $(document).ready(initValidationListeners);

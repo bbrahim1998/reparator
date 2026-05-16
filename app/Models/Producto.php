@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * MODELO PRODUCTO
+ *
+ * Representa un producto/servicio del catálogo.
+ * Contiene nombre, descripción, precio, imagen,
+ * stock y flags de disponibilidad (solo_local, solo_tienda).
+ */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -7,8 +15,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Producto extends Model
 {
+    /* Nombre personalizado de la tabla en la BD (productos) */
     protected $table = 'productos';
 
+    /* Campos asignables masivamente: datos del producto, categoría, flags y precio */
     protected $fillable = [
         'nombre',
         'descripcion',
@@ -20,6 +30,12 @@ class Producto extends Model
         'precio',
     ];
 
+    /*
+     * Convierte solo_local y solo_tienda a booleanos,
+     * y precio a decimal con 2 decimales.
+     *
+     * @return array<string, string>
+     */
     protected function casts(): array
     {
         return [
@@ -29,6 +45,11 @@ class Producto extends Model
         ];
     }
 
+    /*
+     * Relación: un producto pertenece a una categoría.
+     *
+     * @return BelongsTo
+     */
     public function categoria(): BelongsTo
     {
         return $this->belongsTo(Categoria::class);

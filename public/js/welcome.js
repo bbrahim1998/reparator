@@ -1,42 +1,51 @@
+// ========================================================================
+//  WELCOME (Página de inicio)
+//  Carrusel de imágenes con navegación por botones, dots, auto-play y
+//  soporte táctil para dispositivos móviles.
+// ========================================================================
+
+// Botón CTA principal
 document.getElementById('ctaBtn').addEventListener('click', () => {
     alert('📞 ¡Gracias por tu interés! Pronto nos pondremos en contacto contigo.');
 });
 
-// Carousel
+// ─── Carrusel ─────────────────────────────────────────────────────────
+
 const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.carousel-dot');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
-let current = 0;
-const total = track.children.length;
+let currentSlide = 0;
+const totalSlides = track.children.length;
 
-function goTo(index) {
-    if (index < 0) index = total - 1;
-    if (index >= total) index = 0;
-    current = index;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+/** Navega al slide indicado (con wraparound) y actualiza los dots */
+function goToSlide(index) {
+    if (index < 0) index = totalSlides - 1;
+    if (index >= totalSlides) index = 0;
+    currentSlide = index;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
 }
 
-prevBtn.addEventListener('click', () => goTo(current - 1));
-nextBtn.addEventListener('click', () => goTo(current + 1));
-dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
 
 // Auto-play cada 4 segundos
-let autoplay = setInterval(() => goTo(current + 1), 4000);
+let autoplayInterval = setInterval(() => goToSlide(currentSlide + 1), 4000);
 
-// Pausar al hover
-track.addEventListener('mouseenter', () => clearInterval(autoplay));
+// Pausar al hacer hover
+track.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
 track.addEventListener('mouseleave', () => {
-    autoplay = setInterval(() => goTo(current + 1), 4000);
+    autoplayInterval = setInterval(() => goToSlide(currentSlide + 1), 4000);
 });
 
 // Soporte táctil (swipe)
-let startX = 0;
-track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+let touchStartX = 0;
+track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
 track.addEventListener('touchend', e => {
-    const diff = startX - e.changedTouches[0].clientX;
+    const diff = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) {
-        diff > 0 ? goTo(current + 1) : goTo(current - 1);
+        diff > 0 ? goToSlide(currentSlide + 1) : goToSlide(currentSlide - 1);
     }
 });

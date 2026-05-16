@@ -1,9 +1,14 @@
+// ========================================================================
+//  MAIN
+//  Menú móvil responsive: toggle del menú de navegación y overlay.
+//  El carrito se gestiona desde carrito.js
+// ========================================================================
+
 const menuToggle = document.getElementById('menuToggle');
 const navMobile = document.getElementById('navMobile');
 const overlay = document.getElementById('overlay');
-const userIcon = document.getElementById('userIcon');
-const cartIcon = document.getElementById('cartIcon');
 
+/** Abre o cierra el menú de navegación móvil y el overlay */
 function toggleMenu() {
     navMobile.classList.toggle('active');
     navMobile.classList.toggle('flex');
@@ -16,16 +21,9 @@ function toggleMenu() {
 if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
 if (overlay) overlay.addEventListener('click', toggleMenu);
 
+// Cerrar el menú al hacer clic en un enlace de navegación
 document.querySelectorAll('#navMobile a').forEach(link => {
     link.addEventListener('click', () => {
-        if(navMobile.classList.contains('active')) toggleMenu();
+        if (navMobile.classList.contains('active')) toggleMenu();
     });
 });
-
-
-
-if (cartIcon) {
-    cartIcon.addEventListener('click', () => {
-        alert('🛒 Tu carrito está vacío. Explora nuestros servicios');
-    });
-}

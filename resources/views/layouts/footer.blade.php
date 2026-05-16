@@ -3,10 +3,9 @@
     <div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
         <div>
             <h4 class="font-titulos mb-5 text-[clamp(14px,1.5vw,16px)] font-bold text-[var(--color-acento)]">Informació Legal</h4>
-            <a href="#" class="mb-3 block font-parrafos text-[clamp(14px,1.5vw,17px)] text-[var(--color-texto)] transition-all duration-300 hover:text-[var(--color-acento)] hover:pl-1.5">Informació Legal</a>
-            <a href="#" class="mb-3 block font-parrafos text-[clamp(14px,1.5vw,17px)] text-[var(--color-texto)] transition-all duration-300 hover:text-[var(--color-acento)] hover:pl-1.5">Confidencialitat</a>
-            <a href="#" class="mb-3 block font-parrafos text-[clamp(14px,1.5vw,17px)] text-[var(--color-texto)] transition-all duration-300 hover:text-[var(--color-acento)] hover:pl-1.5">Política de cookies</a>
-            <a href="#" class="mb-3 block font-parrafos text-[clamp(14px,1.5vw,17px)] text-[var(--color-texto)] transition-all duration-300 hover:text-[var(--color-acento)] hover:pl-1.5">Avis jurídic</a>
+            <a href="{{ route('aviso-legal') }}" class="mb-3 block font-parrafos text-[clamp(14px,1.5vw,17px)] text-[var(--color-texto)] transition-all duration-300 hover:text-[var(--color-acento)] hover:pl-1.5">Aviso Legal</a>
+            <a href="{{ route('politica-cookies') }}" class="mb-3 block font-parrafos text-[clamp(14px,1.5vw,17px)] text-[var(--color-texto)] transition-all duration-300 hover:text-[var(--color-acento)] hover:pl-1.5">Política de cookies</a>
+            <a href="{{ route('politica-envio') }}" class="mb-3 block font-parrafos text-[clamp(14px,1.5vw,17px)] text-[var(--color-texto)] transition-all duration-300 hover:text-[var(--color-acento)] hover:pl-1.5">Condicions d'enviament</a>
         </div>
         <div>
             <h4 class="font-titulos mb-5 text-[clamp(14px,1.5vw,16px)] font-bold text-[var(--color-acento)]">Atenció al client</h4>

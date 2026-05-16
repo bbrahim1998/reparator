@@ -47,7 +47,7 @@
 
                 <div class="form-group full-width">
                     <label for="imagen">Imagen (URL)</label>
-                    <input id="imagen" type="url" name="imagen" value="{{ old('imagen') }}" class="form-control" placeholder="https://ejemplo.com/imagen.jpg">
+                    <input id="imagen" type="text" name="imagen" value="{{ old('imagen') }}" class="form-control" placeholder="https://ejemplo.com/imagen.jpg">
                     @error('imagen')<p class="form-error">{{ $message }}</p>@enderror
                 </div>
 
